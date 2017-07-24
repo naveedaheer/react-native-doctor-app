@@ -5,7 +5,7 @@ import { Container, Content, Card, CardItem, Body } from 'native-base';
 export default class BodyComponent extends Component {
     render() {
         return (
-            <Container>
+            
                 <Content>
                     <Card>
                         <CardItem>
@@ -17,7 +17,7 @@ export default class BodyComponent extends Component {
                         </CardItem>
                     </Card>
                 </Content>
-            </Container>
+            
         );
     }
 }

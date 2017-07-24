@@ -5,7 +5,7 @@ import { Container, Header, Left, Body, Right, Button, Icon, Title, Subtitle } f
 export default class HeaderComponent extends Component {
     render() {
         return (
-            <Container>
+            
                 <Header>
                     <Left>
                         <Button transparent>
@@ -22,7 +22,7 @@ export default class HeaderComponent extends Component {
                             style={{ width: 50, height: 50, borderRadius:30 }} />
                     </Right>
                 </Header>
-            </Container>
+            
         );
     }
 }
