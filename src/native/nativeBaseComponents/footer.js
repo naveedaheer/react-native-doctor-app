@@ -7,16 +7,18 @@ export default class FooterComponents extends Component {
         return (
             <Footer >
                 <FooterTab>
-                    <Button >
-                        <Icon name="paper" />
+                    <Button active>
+                        <Icon name="egg" />
                         <Text>View Patients</Text>
                     </Button>
                     <Button>
-                        <Icon name="add" />
+                        <Icon name="paper" />
                         <Text >Add Patients</Text >
                     </Button>
+
                 </FooterTab>
             </Footer>
+
         );
     }
 }

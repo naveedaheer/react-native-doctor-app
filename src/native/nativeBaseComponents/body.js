@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-import { Container, Content, Card, CardItem, Body, Input, H2, Icon, Header, Item, Button, Text } from 'native-base';
+import { Text } from 'react-native';
+import { Container, Content, Card, CardItem, Body } from 'native-base';
 
 export default class BodyComponent extends Component {
     render() {
         return (
-            <Container >
+            <Container>
                 <Content>
                     <Card>
                         <CardItem>
-                            <Icon name="search" /><Input type="text" placeholder='Search by Name' />
+                            <Body>
+                                <Text>
+                                    My Project Text
+                            </Text>
+                            </Body>
                         </CardItem>
                     </Card>
                 </Content>
