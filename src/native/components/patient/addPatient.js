@@ -5,44 +5,51 @@ import {
 } from 'native-base';
 import { StyleSheet, AsyncStorage } from 'react-native';
 
+var allPatients = [];
+
 export default class FloatingLabelExample extends Component {
+
     constructor() {
         super();
         this.state = {
             patientName: '',
             patientAge: '',
         }
-        this.submit = this.submit.bind(this);
-        this.inputChange = this.inputChange.bind(this);
     }
 
-    submit() {
+    componentDidMount() {
+        this.viewPatient();
+    }
 
-        let patientData = {
-            patientName: this.state.patientName,
-            patientAge: this.state.patientAge
-        }
-        console.log("this.state.patientName", this.state.patientName);
-    }
-    showState(state) {
-        let myData;
-        let saveData;
-        if (state == 'add') {
-            saveData = this.state;
-            AsyncStorage.setItem("patientData", saveData)
-            console.log("added");
-        } else {
-            AsyncStorage.getItem("patientData").then((data) => {
-                console.log("got");
-                myData = data;
-                console.log("myData", myData);
-            })
-        }
-    }
-    inputChange(e) {
-        this.setState({
-            [e.target.name]: e.target.value
+    addPatient() {
+
+        allPatients.push(this.state);
+        console.log("add", allPatients)
+        AsyncStorage.setItem("patientData", JSON.stringify(allPatients)).then(() => {
+            console.log("Saved");
         })
+
+    }
+
+    viewPatient() {
+        allPatients = [];
+        let Mydata;
+        AsyncStorage.getItem("patientData").then((data) => {
+            Mydata = JSON.parse(data);
+            console.log("data", Mydata);
+
+            for (var i = 0; i < Mydata.length; i++) {
+                allPatients.push(Mydata[i]);
+            }
+
+            // for(var prop in Mydata){
+            //     allPatients.push((Mydata[prop]));            
+            // }
+
+            console.log("allPatients", allPatients);
+        })
+
+
     }
 
     render() {
@@ -86,8 +93,8 @@ export default class FloatingLabelExample extends Component {
                             <Label >History</Label>
                             <Textarea />
                         </Item>
-                        <Button onPress={() => this.showState('add')} full success ><Text> Submit</Text></Button>
-                        <Button onPress={() => this.showState('get')} full ><Text> View</Text></Button>
+                        <Button onPress={() => this.addPatient()} full success ><Text> Submit</Text></Button>
+                        <Button onPress={() => this.viewPatient()} full ><Text> View</Text></Button>
                     </Form>
 
                 </Content>
