@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
     Container, Content, Form, Item, Input, Label, H2,
-    Textarea, Radio, Right, Left, Text, ListItem, Button, Picker
+    Textarea, Radio, Right, Left, Text, ListItem, Button, Picker,
+    Icon, Toast
 } from 'native-base';
 import { StyleSheet, AsyncStorage } from 'react-native';
 
@@ -12,6 +13,7 @@ export default class FloatingLabelExample extends Component {
     constructor() {
         super();
         this.state = {
+            showToast: false,
             patientName: '',
             patientAge: '',
         }
@@ -23,10 +25,20 @@ export default class FloatingLabelExample extends Component {
 
     addPatient() {
 
-        allPatients.push(this.state);
-        console.log("add", allPatients)
+        allPatients.push({patientName :this.state.patientName, patientAge: this.state.patientAge});
+        var patientData = {
+            patientName: this.state.patientName,
+            patientAge: this.state.patientAge
+        }
+        console.log("allPatients", allPatients)
         AsyncStorage.setItem("patientData", JSON.stringify(allPatients)).then(() => {
             console.log("Saved");
+            Toast.show({
+                text: 'Saved Succesfully',
+                position: 'center',
+                type: 'success',
+                duration: 1000
+            });
         })
 
     }
@@ -41,15 +53,8 @@ export default class FloatingLabelExample extends Component {
             for (var i = 0; i < Mydata.length; i++) {
                 allPatients.push(Mydata[i]);
             }
-
-            // for(var prop in Mydata){
-            //     allPatients.push((Mydata[prop]));            
-            // }
-
             console.log("allPatients", allPatients);
         })
-
-
     }
 
     render() {

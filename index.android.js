@@ -12,6 +12,7 @@ import Header from './src/native/nativeBaseComponents/header';
 import Body from './src/native/nativeBaseComponents/body';
 import Footer from './src/native/nativeBaseComponents/footer';
 import AddPatient from './src/native/components/patient/addPatient';
+import ViewPatient from './src/native/components/patient/viewPatient';
 
 
 import { Container, StyleProvider } from 'native-base';
@@ -27,7 +28,8 @@ export default class AheerDoctor extends Component {
         <Container>
           <Header></Header>
           {/* <Body></Body> */}
-          <AddPatient />
+          {/*<AddPatient />*/}
+          <ViewPatient />
           <Footer></Footer>
         </Container>
 
