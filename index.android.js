@@ -23,17 +23,19 @@ import aheerDoctor from './src/native-base-theme/variables/aheerDoctor';
 export default class AheerDoctor extends Component {
   render() {
     return (
+
       <StyleProvider style={getTheme(aheerDoctor)} >
 
         <Container>
           <Header></Header>
           {/* <Body></Body> */}
-          {/*<AddPatient />*/}
-          <ViewPatient />
+          <AddPatient />
+          {/* <ViewPatient /> */}
           <Footer></Footer>
         </Container>
 
       </StyleProvider>
+
     );
   }
 }
