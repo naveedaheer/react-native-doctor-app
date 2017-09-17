@@ -19,19 +19,22 @@ import { Container, StyleProvider } from 'native-base';
 import getTheme from './src/native-base-theme/components';
 import aheerDoctor from './src/native-base-theme/variables/aheerDoctor';
 //import AllComponents from './src/components';
+import Navigation from './src/native/components/navigator';
 
 export default class AheerDoctor extends Component {
+
   render() {
     return (
 
       <StyleProvider style={getTheme(aheerDoctor)} >
 
         <Container>
-          <Header></Header>
+          {/* <Header></Header> */}
           {/* <Body></Body> */}
-          <AddPatient />
+          {/* <AddPatient /> */}
           {/* <ViewPatient /> */}
-          <Footer></Footer>
+          {/* <Footer></Footer> */}
+          <Navigation />
         </Container>
 
       </StyleProvider>

@@ -8,8 +8,10 @@ import { StyleSheet, AsyncStorage } from 'react-native';
 
 let allPatients = [];
 
-export default class FloatingLabelExample extends Component {
-
+export default class AddPatient extends Component {
+    static navigationOptions  = {
+        title: 'Add Patient Screen'
+    };
     constructor() {
         super();
         this.state = {
@@ -70,10 +72,19 @@ export default class FloatingLabelExample extends Component {
 
 
     render() {
+        var { navigate } = this.props.navigation;
         return (
             <Root>
+
                 <Container style={styles.container} >
                     <Content>
+                        <Button
+                        full
+                            onPress={
+                                () => navigate("viewPatient", { name: "Naveed Aheer", website: "naveedaheer.com" })
+                            }
+                            title='view'
+                        ><Text>View Patienst</Text></Button>
                         <H3 style={{ textAlign: 'center', marginTop: 10 }} >Add New Patient</H3>
                         <Form {...this.props} style={{ marginTop: -20 }} >
                             <Item floatingLabel>
@@ -120,7 +131,37 @@ export default class FloatingLabelExample extends Component {
                                     onChangeText={(patientDisease) => this.setState({ patientDisease })}
                                 />
                             </Item>
-                            {/* <DatePicker
+
+                            <Item floatingLabel last>
+                                <Label >Patient History</Label>
+                                <Input
+                                    {...this.props} //inherit props of text area
+                                    maxLength={50}
+                                    returnKeyType='next'
+                                    value={this.state.patientHistory}
+                                    onChangeText={(patientHistory) => this.setState({ patientHistory })}
+                                />
+                            </Item>
+                            <Button onPress={() => this.addPatient()} full  ><Text> Submit</Text></Button>
+                        </Form>
+                    </Content>
+                </Container>
+            </ Root>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        padding: 10
+        // alignItems: 'center',
+        // justifyContent: 'center',
+    },
+});
+
+{/* <DatePicker
                                 {...this.props}
                                 style={{ width: 200 }}
                                 date={this.state.date}
@@ -144,31 +185,3 @@ export default class FloatingLabelExample extends Component {
                                 }}
                                 onDateChange={(date) => this.setState({ date })}
                             /> */}
-                            <Item floatingLabel last>
-                                <Label >Patient History</Label>
-                                <Input
-                                    {...this.props} //inherit props of text area
-                                    maxLength={50}
-                                    returnKeyType='next'
-                                    value={this.state.patientHistory}
-                                    onChangeText={(patientHistory) => this.setState({ patientHistory })}
-                                />
-                            </Item>
-                            <Button onPress={() => this.addPatient()} full success ><Text> Submit</Text></Button>
-                        </Form>
-                    </Content>
-                </Container>
-            </ Root>
-        );
-    }
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        padding: 10
-        // alignItems: 'center',
-        // justifyContent: 'center',
-    },
-});
