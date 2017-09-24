@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Container, Content, List, ListItem, Thumbnail, Text, Body, View, Button, H3 } from 'native-base';
+import { Container, Content, List, ListItem, Thumbnail, Text, Body, View, Button, H3, Left, Right } from 'native-base';
 import { AsyncStorage } from 'react-native';
 
 
-var allPatients = [];
+let allPatients = [];
 
-export default class ViewPatient extends Component {
+export default class ViewPatientList extends Component {
     static navigationOptions = ({ navigation }) => ({
         // title: 'View Screen',
         title: navigation.state.params.name,
@@ -16,11 +16,12 @@ export default class ViewPatient extends Component {
         this.state = {
         }
     }
+    
     componentDidMount() {
-        this.viewPatient();
+        this.patientList();
     }
 
-    viewPatient() {
+    patientList() {
         allPatients = [];
         let Mydata;
         AsyncStorage.getItem("patientData").then((data) => {
@@ -40,7 +41,7 @@ export default class ViewPatient extends Component {
                 <Content>
                     <List>
                         <ListItem>
-                            <Thumbnail square size={80} source={{ uri: "./../../../images/naveed.png" }} />
+                            <Thumbnail square size={80} source={{ uri: "./../../../../images/p1.png" }} />
                             <Body>
                                 {/* <Button
                                     onPress={() => params()}
@@ -50,7 +51,30 @@ export default class ViewPatient extends Component {
                             </Body>
                         </ListItem>
                     </List>
+
                     <H3 style={{ textAlign: 'center', marginTop: 10 }} >View Patients</H3>
+
+                    {allPatients.map((val, i) => {
+                        return (
+                            <List key={i}>
+                                <ListItem avatar>
+                                    <Left>
+                                        <Thumbnail source={{ uri: '../../../../images/naveed.png' }} />
+                                    </Left>
+                                    <Body>
+                                        <Text>{val.patientName}</Text>
+                                        <Text note>{val.patientDisease}</Text>
+                                    </Body>
+                                    <Right>
+                                        <Text note>Age: {val.patientAge}</Text>
+                                    </Right>
+                                </ListItem>
+                            </List>
+                        )
+                    })
+                    }
+
+
                 </Content>
             </Container>
         )

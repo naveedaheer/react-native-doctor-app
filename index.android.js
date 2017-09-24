@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry
@@ -12,7 +6,7 @@ import Header from './src/native/nativeBaseComponents/header';
 import Body from './src/native/nativeBaseComponents/body';
 import Footer from './src/native/nativeBaseComponents/footer';
 import AddPatient from './src/native/components/patient/addPatient';
-import ViewPatient from './src/native/components/patient/viewPatient';
+import viewPatientList from './src/native/components/patient/viewPatientList';
 
 
 import { Container, StyleProvider } from 'native-base';
@@ -32,7 +26,7 @@ export default class AheerDoctor extends Component {
           {/* <Header></Header> */}
           {/* <Body></Body> */}
           {/* <AddPatient /> */}
-          {/* <ViewPatient /> */}
+          {/* <viewPatientList /> */}
           {/* <Footer></Footer> */}
           <Navigation />
         </Container>

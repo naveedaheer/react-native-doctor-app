@@ -28,7 +28,7 @@ export default class AddPatient extends Component {
     }
 
     componentDidMount() {
-        this.viewPatient();
+        this.viewPatientList();
     }
 
     addPatient() {
@@ -55,7 +55,7 @@ export default class AddPatient extends Component {
         console.log("this.state", this.state)
     }
 
-    viewPatient() {
+    viewPatientList() {
         allPatients = [];
         let Mydata;
         AsyncStorage.getItem("patientData").then((data) => {
@@ -81,10 +81,10 @@ export default class AddPatient extends Component {
                         <Button
                         full
                             onPress={
-                                () => navigate("viewPatient", { name: "Naveed Aheer", website: "naveedaheer.com" })
+                                () => navigate("viewPatientList", { name: "Naveed Aheer", website: "naveedaheer.com" })
                             }
                             title='view'
-                        ><Text>View Patienst</Text></Button>
+                        ><Text>View Patient</Text></Button>
                         <H3 style={{ textAlign: 'center', marginTop: 10 }} >Add New Patient</H3>
                         <Form {...this.props} style={{ marginTop: -20 }} >
                             <Item floatingLabel>
