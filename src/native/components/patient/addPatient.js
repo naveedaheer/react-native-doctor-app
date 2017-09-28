@@ -9,7 +9,7 @@ import { StyleSheet, AsyncStorage } from 'react-native';
 let allPatients = [];
 
 export default class AddPatient extends Component {
-    static navigationOptions  = {
+    static navigationOptions = {
         title: 'Add Patient Screen'
     };
     constructor() {
@@ -21,7 +21,8 @@ export default class AddPatient extends Component {
             patientGender: 'male',
             patientDisease: '',
             patientHistory: '',
-            date: new Date()
+            date: new Date(),
+            idExists: false
         }
 
         this.initialState = this.state;
@@ -32,8 +33,16 @@ export default class AddPatient extends Component {
     }
 
     addPatient() {
-
-        let patientData = {
+        let patientData = {};
+        if (this.state.idExists) {
+            // patientData.patientId = ++(parseInt(patientId));
+            console.log("this.state.idExists", this.state.idExists)
+        }
+        if (!this.state.idExists) {
+            patientData.patientId = 1;
+            console.log("!this.state.idExists", this.state.idExists)
+        }
+        patientData = {
             patientName: this.state.patientName,
             patientAge: this.state.patientAge,
             patientGender: this.state.patientGender,
@@ -41,17 +50,17 @@ export default class AddPatient extends Component {
             patientHistory: this.state.patientHistory
         }
         console.log("allPatients", allPatients);
-        allPatients.push(patientData);
+        // allPatients.push(patientData);
 
-        AsyncStorage.setItem("patientData", JSON.stringify(allPatients)).then(() => {
-            Toast.show({
-                text: 'Saved Succesfully',
-                position: 'bottom',
-                type: 'success',
-                duration: 3000,
-            });
-            this.setState(this.initialState);
-        })
+        // AsyncStorage.setItem("patientData", JSON.stringify(allPatients)).then(() => {
+        //     Toast.show({
+        //         text: 'Saved Succesfully',
+        //         position: 'bottom',
+        //         type: 'success',
+        //         duration: 3000,
+        //     });
+        //     this.setState(this.initialState);
+        // })
         console.log("this.state", this.state)
     }
 
@@ -66,8 +75,15 @@ export default class AddPatient extends Component {
                 allPatients.push(Mydata[i]);
             }
             console.log("allPatients", allPatients);
+            var idExists = allPatients.filter(x => x.patientId);
+            if (idExists.length > 0) {
+                this.setState({ idExists: true })
+                console.log("Yes patientId")
+            } else if (idExists.length == 0) {
+                this.setState({ idExists: false })
+                console.log("No patientId")
+            }
         })
-        console.log("this.state", this.state)
     }
 
 
@@ -79,7 +95,7 @@ export default class AddPatient extends Component {
                 <Container style={styles.container} >
                     <Content>
                         <Button
-                        full
+                            full
                             onPress={
                                 () => navigate("viewPatientList", { name: "Naveed Aheer", website: "naveedaheer.com" })
                             }

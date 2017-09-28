@@ -16,7 +16,7 @@ export default class ViewPatientList extends Component {
         this.state = {
         }
     }
-    
+
     componentDidMount() {
         this.patientList();
     }
@@ -73,7 +73,6 @@ export default class ViewPatientList extends Component {
                         )
                     })
                     }
-
 
                 </Content>
             </Container>
